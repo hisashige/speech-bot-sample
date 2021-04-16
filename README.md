@@ -1,8 +1,8 @@
-# dialogflow-bot-demo
+# speech-bot-demo
 
 ## ディレクトリ構造
 
-dialogflow-bot-demo/  
+speech-bot-demo/  
 ┣ api/ - API 関連ソース。  
 ┃ ┣ node_modules/ - npm パッケージのインストールフォルダ。  
 ┃ ┣ index.js – API のメインファイル。API のメインの処理を記載している。  
@@ -66,4 +66,7 @@ npm start
 
 http://localhost:8080/
 
+### 入店前
+![Screen Image](public/img/beforeEnter.png)
+### 入店後
 ![Screen Image](public/img/screen.png)
