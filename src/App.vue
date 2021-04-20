@@ -196,10 +196,10 @@ export default {
   methods: {
     // 音声認識処理
     recognition() {
-      // 音声認識中フラグをON
+      // 1. 音声認識中フラグをON
       this.isRecognizing = true
 
-      // SpeechRecognitionを利用
+      // 2. SpeechRecognitionを利用
       const Recognition = window.SpeechRecognition
         || window.webkitSpeechRecognition
       const recognition = new Recognition()
@@ -208,34 +208,27 @@ export default {
       // 認識開始
       recognition.start()
 
-      // 認識に成功した時
+      // 3-1. 認識に成功した時
       recognition.onresult = function(event) {
-        // 認識結果のテキストを取得
         let speech = event.results[0][0].transcript
         this.inputMessage = speech
-        // 入力テキストをDialogflowに送信
         this.sendMessage()
-        // 音声認識中フラグをOFF
         this.isRecognizing = false
       }.bind(this)
 
-      // 発声が終了した時
+      // 3-2. 発声が終了した時
       recognition.onspeechend = function() {
-        // 認識を停止
         recognition.stop()
-        // 音声認識中フラグをOFF
         this.isRecognizing = false
       }.bind(this)
 
-      // 認識できず最終結果を返された時
+      // 3-3. 認識できず最終結果を返された時
       recognition.onnomatch = function() {
-        // 音声認識中フラグをOFF
         this.isRecognizing = false
       }.bind(this)
 
-      // エラーが発生した時
+      // 3-4. エラーが発生した時
       recognition.onerror = function() {
-        // 音声認識中フラグをOFF
         this.isRecognizing = false
       }.bind(this)
     },
